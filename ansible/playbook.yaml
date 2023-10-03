@@ -1,0 +1,71 @@
+---
+- hosts: bootstrap_host
+  become: true
+  tasks:
+    - name: Download AWS CLI Updated Version
+      unarchive:
+        src: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+        dest: /opt
+        remote_src: true
+
+    - name: Install AWS CLI
+      command: "sudo /opt/aws/install"
+
+    - name: Download & Setup Kubectl
+      get_url:
+        url: "https://amazon-eks.s3.us-west-2.amazonaws.com/1.21.2/2021-07-05/bin/linux/amd64/kubectl"
+        dest: "/usr/local/bin/kubectl"
+        mode: "a+x"
+    #sed -i -e "s,client.authentication.k8s.io/v1alpha1,client.authentication.k8s.io/v1beta1,g" ~/.kube/config
+    - name: Download & Setup eksctl
+      shell: curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+      args:
+        executable: /bin/bash
+
+    - name: Move eksctl to /usr/local/bin
+      command: "sudo mv /tmp/eksctl /usr/local/bin"
+
+    - name: Save eksctl version
+      command: "/usr/local/bin/eksctl version"
+      register: eskctl_version
+
+    - name: Display eksctl version
+      debug:
+        var: eskctl_version.stdout_lines
+
+    - name: Install helm if not exists
+      unarchive:
+        src: https://get.helm.sh/helm-v3.11.0-linux-amd64.tar.gz
+        dest: /opt
+        mode: "a+x"
+        remote_src: true
+      args:
+        creates: /usr/local/bin/helm
+
+    - name: Move Helm binary to /usr/local/bin
+      command: "mv /opt/linux-amd64/helm /usr/local/bin/"
+      args:
+        creates: /usr/local/bin/helm
+
+    - name: Print helm version
+      command: "/usr/local/bin/helm version"
+      register: helm_version
+
+    - name: Display helm version
+      debug:
+        var: helm_version.stdout_lines
+
+    - name: Deploy eks cluster
+      command: "/usr/local/bin/eksctl create cluster --name demo-cluster --region us-east-1 --zones us-east-1a,us-east-1b --nodegroup-name demo-nodes --node-type t2.large --nodes 2 --nodes-min 1 --nodes-max 3"
+      register: eskctl_cluster
+
+    - name: Display eksctl cluster output
+      debug:
+        var: eskctl_cluster.stdout_lines
+
+    # - name: Add Jenkins bitnami Helm Repo
+    #   command: /usr/local/bin/helm repo add bitnami https://charts.bitnami.com/bitnami
+
+    # - name: Install Helm Char
+    #   #command: /usr/local/bin/helm install jenkins-chart oci://registry-1.docker.io/bitnamicharts/jenkins -n devops-tools
+    #   command: /usr/local/bin/helm install jenkins bitnami/jenkins -n jenkins
