@@ -112,29 +112,48 @@ resource "aws_iam_role" "ec2_role" {
   })
 }
 
-resource "aws_iam_policy_attachment" "ec2_role_policy" {
+resource "aws_iam_role_policy_attachment" "ec2_role_policy" {
+  role       = aws_iam_role.ec2_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
+}
+resource "aws_iam_role_policy_attachment" "administrator_role_policy" {
+  role       = aws_iam_role.ec2_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+}
+resource "aws_iam_role_policy_attachment" "iam_role_policy" {
+  role       = aws_iam_role.ec2_role.name
+  policy_arn = "arn:aws:iam::aws:policy/IAMFullAccess"
+}
+resource "aws_iam_role_policy_attachment" "cloudformation_role_policy" {
+  role       = aws_iam_role.ec2_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AWSCloudFormationFullAccess"
+}
+
+
+/* resource "aws_iam_policy_attachment" "ec2_role_policy" {
   name       = "AmazonEC2FullAccess"
   roles      = [aws_iam_role.ec2_role.name]
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
-}
+} */
 
-resource "aws_iam_policy_attachment" "administrator_role_policy" {
+/* resource "aws_iam_policy_attachment" "administrator_role_policy" {
   name       = "AdministratorAccess"
   roles      = [aws_iam_role.ec2_role.name]
   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
-}
-
-resource "aws_iam_policy_attachment" "cloudformation_role_policy" {
-  name       = "AwsCloudFormationFullAccess"
-  roles      = [aws_iam_role.ec2_role.name]
-  policy_arn = "arn:aws:iam::aws:policy/AwsCloudFormationFullAccess"
-}
-
-resource "aws_iam_policy_attachment" "iam_role_policy" {
+} */
+/* resource "aws_iam_policy_attachment" "iam_role_policy" {
   name       = "IAMFullAccess"
   roles      = [aws_iam_role.ec2_role.name]
   policy_arn = "arn:aws:iam::aws:policy/IAMFullAccess"
-}
+
+} */
+/* resource "aws_iam_policy_attachment" "cloudformation_role_policy" {
+  name       = "AwsCloudFormationFullAccess"
+  roles      = [aws_iam_role.ec2_role.name]
+  policy_arn = "arn:aws:iam::aws:policy/AwsCloudFormationFullAccess"
+} */
+
+
 
 resource "aws_iam_instance_profile" "ec2-role-profile" {
   name = "EC2IAMInstanceProfile"
@@ -436,18 +455,29 @@ resource "aws_iam_role" "loadbalancer-controller-role" {
 }
 
 
-resource "aws_iam_policy_attachment" "loadbalancer-policy-attachment" {
+resource "aws_iam_role_policy_attachment" "loadbalancer-policy-attachment" {
   depends_on = [aws_iam_role.loadbalancer-controller-role]
+  role       = aws_iam_role.loadbalancer-controller-role.name
+  policy_arn = aws_iam_policy.loadbalancer-controller-policy.arn
+}
+
+resource "aws_iam_role_policy_attachment" "elastic-load-balancing-full-access" {
+  depends_on = [aws_iam_role.loadbalancer-controller-role]
+  policy_arn = "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess"
+  role       = aws_iam_role.loadbalancer-controller-role.name
+}
+
+/* resource "aws_iam_policy_attachment" "loadbalancer-policy-attachment" {
 
   name       = "loadbalancer-policy-attachment"
   policy_arn = aws_iam_policy.loadbalancer-controller-policy.arn
   roles      = [aws_iam_role.loadbalancer-controller-role.name]
-}
+} */
 
-resource "aws_iam_policy_attachment" "elastic-load-balancing-full-access" {
+/* resource "aws_iam_policy_attachment" "elastic-load-balancing-full-access" {
   depends_on = [aws_iam_role.loadbalancer-controller-role]
 
   name       = "ElasticLoadBalancingFullAccess"
   policy_arn = "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess"
   roles      = [aws_iam_role.loadbalancer-controller-role.name]
-}
+} */

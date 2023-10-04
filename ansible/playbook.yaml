@@ -11,6 +11,7 @@
     - name: Install AWS CLI
       command: "sudo /opt/aws/install"
       register: aws_cli
+      ignore_errors: yes
 
     - name: Display aws cli 
       debug:
