@@ -10,10 +10,15 @@
 
     - name: Install AWS CLI
       command: "sudo /opt/aws/install"
+      register: aws_cli
+
+    - name: Display aws cli 
+      debug:
+        var: aws_cli.stdout_lines
 
     - name: Download & Setup Kubectl
       get_url:
-        url: "https://amazon-eks.s3.us-west-2.amazonaws.com/1.21.2/2021-07-05/bin/linux/amd64/kubectl"
+        url: "https://s3.us-west-2.amazonaws.com/amazon-eks/1.25.13/2023-09-14/bin/linux/amd64/kubectl" #"https://amazon-eks.s3.us-west-2.amazonaws.com/1.21.2/2021-07-05/bin/linux/amd64/kubectl"
         dest: "/usr/local/bin/kubectl"
         mode: "a+x"
     #sed -i -e "s,client.authentication.k8s.io/v1alpha1,client.authentication.k8s.io/v1beta1,g" ~/.kube/config
@@ -63,9 +68,3 @@
       debug:
         var: eskctl_cluster.stdout_lines
 
-    # - name: Add Jenkins bitnami Helm Repo
-    #   command: /usr/local/bin/helm repo add bitnami https://charts.bitnami.com/bitnami
-
-    # - name: Install Helm Char
-    #   #command: /usr/local/bin/helm install jenkins-chart oci://registry-1.docker.io/bitnamicharts/jenkins -n devops-tools
-    #   command: /usr/local/bin/helm install jenkins bitnami/jenkins -n jenkins

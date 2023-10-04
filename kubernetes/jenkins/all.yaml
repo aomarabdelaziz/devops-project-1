@@ -20,6 +20,7 @@ metadata:
   namespace: kube-system
   annotations:
     eks.amazonaws.com/role-arn: arn:aws:iam::175437784856:role/loadbalancer-controller-role
+                              
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -137,8 +138,7 @@ spec:
   ports:
     - port: 8080
       targetPort: 8080
-
----
+# ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
