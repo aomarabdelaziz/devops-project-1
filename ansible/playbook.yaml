@@ -63,13 +63,13 @@
       debug:
         var: helm_version.stdout_lines
 
-    # - name: Deploy eks cluster
-    #   command: "/usr/local/bin/eksctl create cluster --name demo-cluster --region us-east-1 --zones us-east-1a,us-east-1b --nodegroup-name demo-nodes --node-type t2.large --nodes 2 --nodes-min 1 --nodes-max 3"
-    #   register: eskctl_cluster
+    - name: Deploy eks cluster
+      command: "/usr/local/bin/eksctl create cluster --name demo-cluster --region us-east-1 --zones us-east-1a,us-east-1b --nodegroup-name demo-nodes --node-type t2.large --nodes 2 --nodes-min 1 --nodes-max 3"
+      register: eskctl_cluster
 
-    # - name: Display eksctl cluster output
-    #   debug:
-    #     var: eskctl_cluster.stdout_lines
+    - name: Display eksctl cluster output
+      debug:
+        var: eskctl_cluster.stdout_lines
 - name: Second Host Playbook
   hosts: agent_host
   become: true
