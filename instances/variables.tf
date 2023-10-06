@@ -39,3 +39,16 @@ variable "bootstrap-key-name" {
 variable "bootstrap-key-pem" {
   type = string
 }
+
+
+variable "agent-key-name" {
+  type = string
+}
+
+variable "agent-key-pem" {
+  type = string
+}
+
+variable "ec2-role-profile-name" {
+  type = string
+}

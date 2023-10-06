@@ -1,6 +1,8 @@
 ---
-- hosts: bootstrap_host
+- name: First Host Playbook
+  hosts: bootstrap_host
   become: true
+  #become_user: ec2-user
   tasks:
     - name: Download AWS CLI Updated Version
       unarchive:
@@ -61,11 +63,58 @@
       debug:
         var: helm_version.stdout_lines
 
-    - name: Deploy eks cluster
-      command: "/usr/local/bin/eksctl create cluster --name demo-cluster --region us-east-1 --zones us-east-1a,us-east-1b --nodegroup-name demo-nodes --node-type t2.large --nodes 2 --nodes-min 1 --nodes-max 3"
-      register: eskctl_cluster
+    # - name: Deploy eks cluster
+    #   command: "/usr/local/bin/eksctl create cluster --name demo-cluster --region us-east-1 --zones us-east-1a,us-east-1b --nodegroup-name demo-nodes --node-type t2.large --nodes 2 --nodes-min 1 --nodes-max 3"
+    #   register: eskctl_cluster
 
-    - name: Display eksctl cluster output
+    # - name: Display eksctl cluster output
+    #   debug:
+    #     var: eskctl_cluster.stdout_lines
+- name: Second Host Playbook
+  hosts: agent_host
+  become: true
+  tasks:
+    - name: update apt package
+      yum:
+        update_cache: yes
+
+    - name: Install Java-jdk 11
+      apt:
+        name: openjdk-11-jdk
+        state: present
+      ignore_errors: yes
+      register: java_installation
+
+    - name: Execute Java Version Command
+      command: "java --version"
+      ignore_errors: yes
+      register: java_version
+
+    - name: Display java version
       debug:
-        var: eskctl_cluster.stdout_lines
+        var: java_version.stdout_lines     
 
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+      ignore_errors: yes
+
+    - name: Execute Docker Version Command
+      command: "docker --version"
+      ignore_errors: yes
+      register: docker_version
+
+    - name: Display docker
+      debug:
+        var: docker_version.stdout_lines 
+
+    - name: Append user to docker group
+      user:
+        name: ubuntu
+        groups: docker
+        append: yes
+    - name: change docker.sock file permission
+      file:
+        path: /var/run/docker.sock
+        mode: "0777"
