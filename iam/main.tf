@@ -6,6 +6,7 @@ data "aws_eks_cluster" "example" {
 data "tls_certificate" "cluster" {
   depends_on = [var.ansible-ec2-id] #[aws_instance.ansible-ec2]
   url        = data.aws_eks_cluster.example.identity[0].oidc[0].issuer
+
 }
 data "aws_caller_identity" "current" {}
 

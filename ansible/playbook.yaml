@@ -122,7 +122,6 @@
 
 - name: Third Host Playbook
   hosts: bootstrap_host
-  become: true
   become_user: ec2-user
   tasks:
    - name: Fetch kubeconfig
