@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: "{{ .Release.Name }}-pv"
+  labels:
+    type: local
+spec:
+  claimRef:
+    name: "{{ .Release.Name }}-pvc"
+    namespace: {{ .Values.namespace }}
+  capacity:
+    storage: {{ .Values.volumes.persistentVolume.storageCapacity }}
+  accessModes:
+  {{- range .Values.volumes.persistentVolume.accessModes }}
+  - {{ . }}
+  {{- end }}
+  hostPath:
+    path: {{ .Values.volumes.persistentVolume.volumePath }}
+
+

@@ -1,0 +1,58 @@
+namespace: devops-tools
+
+serviceAccountName: jenkins-admin
+
+application:
+  replicas: 1
+  securityContext:
+    fsGroup: 1000
+    runAsUser: 0
+  image: jenkins/jenkins
+  resources:
+    limits:
+      memory: "2Gi"
+      cpu: "1000m"
+    requests:
+      memory: "500Mi"
+      cpu: "500m"
+  ports:
+    - name: http-port
+      containerPort: 8080
+    - name: jnlp-port
+      containerPort: 50000
+  volumeMounts:
+    - name: jenkins-data
+      mountPath: /var/jenkins_home
+
+awsLoadBalancer:
+  namespace: kube-system
+  serviceAccountName: aws-load-balancer-controller
+  eksRoleName: arn:aws:iam::175437784856:role/loadbalancer-controller-role
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/name: aws-load-balancer-controller
+
+services:
+  portType: NodePort
+  ports:
+    - port: 8080
+      targetPort: 8080
+
+volumes:
+  persistentVolume:
+    storageCapacity: 10Gi
+    accessModes:
+      - ReadWriteOnce
+    volumePath: /mnt
+  persistentVolumeClaim:
+    storageCapacity: 10Gi
+    accessModes:
+      - ReadWriteOnce
+
+ingress:
+  enabled: true
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+  ingressClassName: nlb
+  portNumber: 8080

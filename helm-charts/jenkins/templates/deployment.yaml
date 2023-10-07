@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.application.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      securityContext:
+        fsGroup: {{ .Values.application.securityContext.fsGroup }}
+        runAsUser: {{ .Values.application.securityContext.runAsUser }}
+      serviceAccountName: {{ .Values.serviceAccountName }}
+      containers:
+        - name: "{{ .Release.Name }}-container"
+          image: {{ .Values.application.image }}
+          resources:
+            limits:
+              memory: {{ .Values.application.resources.limits.memory }}
+              cpu: {{ .Values.application.resources.limits.cpu }}
+            requests:
+              memory: {{ .Values.application.resources.requests.memory }}
+              cpu: {{ .Values.application.resources.requests.cpu }}
+          ports:
+            {{- range .Values.application.ports }}
+            - name: {{ .name }}
+              containerPort: {{ .containerPort }}
+            {{- end }}
+          livenessProbe:
+            httpGet:
+              path: "/login"
+              port: 8080
+            initialDelaySeconds: 90
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 5
+          readinessProbe:
+            httpGet:
+              path: "/login"
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          volumeMounts:
+            {{- range .Values.application.volumeMounts }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+            {{- end }}
+      volumes:
+        - name: jenkins-data
+          persistentVolumeClaim:
+            claimName: "{{ .Release.Name }}-pvc"
+
