@@ -84,6 +84,15 @@ resource "aws_instance" "ansible-ec2" {
     destination = "/home/ec2-user/ansible.cfg"
   }
 
+  provisioner "file" {
+    source      = "helm-charts/jenkins-0.1.0.tgz"
+    destination = "/home/ec2-user/jenkins-0.1.0.tgz"
+  }
+
+  provisioner "file" {
+    source      = "helm-charts/jenkins-0.1.0.tgz"
+    destination = "/home/ec2-user/regapp-0.1.0.tgz"
+  }
   provisioner "remote-exec" {
     inline = [
       "sudo amazon-linux-extras install ansible2 -y",

@@ -1,61 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "regapp.fullname" . }}
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
   labels:
-    {{- include "regapp.labels" . | nindent 4 }}
+    app: {{ .Release.Name }}
+
 spec:
-  {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
-  {{- end }}
+  replicas: {{ .Values.application.replicas }}
   selector:
     matchLabels:
-      {{- include "regapp.selectorLabels" . | nindent 6 }}
+      app: {{ .Release.Name }}
+
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
-      annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       labels:
-        {{- include "regapp.selectorLabels" . | nindent 8 }}
+        app: {{ .Release.Name }}
     spec:
-      {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      serviceAccountName: {{ include "regapp.serviceAccountName" . }}
-      securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+        - name: "{{ .Release.Name }}-container"
+          image: {{ .Values.application.image }}
+          imagePullPolicy: {{ .Values.application.imagePullPolicy }}
           ports:
-            - name: http
-              containerPort: {{ .Values.service.port }}
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+            - containerPort: {{ .Values.application.port }}
+  strategy:
+    type: {{ .Values.application.strategy.type }}
+    rollingUpdate:
+      maxSurge: {{ .Values.application.strategy.rollingUpdate.maxSurge }}
+      maxUnavailable: {{ .Values.application.strategy.rollingUpdate.maxUnavailable }}

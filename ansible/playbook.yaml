@@ -136,3 +136,10 @@
    - name: Install aws-load-balancer-controller (Operator)
      command: "helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system --set clusterName=demo-cluster --set serviceAccount.create=false --set serviceAccount.name=aws-load-balancer-controller"
 
+   - name: Install Jenkins Helm-Charts
+     command: "helm install jenkins /home/ec2-user/jenkins-0.1.0.tgz --namespace=devops-tools --create-namespace"
+
+   - name: Install Registration App Helm-Charts
+     command: "helm install regapp /home/ec2-user/regapp-0.1.0.tgz"
+
+
