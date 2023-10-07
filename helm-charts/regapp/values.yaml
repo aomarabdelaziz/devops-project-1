@@ -22,5 +22,5 @@ ingress:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-  ingressClassName: nlb
+  ingressClassName: alb
   portNumber: 8080
