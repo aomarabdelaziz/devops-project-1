@@ -12,5 +12,7 @@ module "server-module" {
   agent-key-name        = module.keypairs-module.agent-key-name
   agent-key-pem         = module.keypairs-module.agent-private-key-pem
   ec2-role-profile-name = module.iam-module.aws_iam_profile_name
+  jenkins-chart-url     = module.s3-module.jenkins-chart-url
+  regapp-chart-url      = module.s3-module.regapp-chart-url
 
 }

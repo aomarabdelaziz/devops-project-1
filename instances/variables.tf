@@ -52,3 +52,12 @@ variable "agent-key-pem" {
 variable "ec2-role-profile-name" {
   type = string
 }
+
+variable "jenkins-chart-url" {
+  type = string
+}
+
+
+variable "regapp-chart-url" {
+  type = string
+}
