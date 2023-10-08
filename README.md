@@ -49,9 +49,9 @@ Helm is utilized to package Jenkins and the application, and the Helm charts are
 
 3. Make the necessary changes in the provider.tf file, specifically the project name and region, to match your own project settings
 
-4. Navigate to the Terraform directory and initialize it by running the command `terraform init``
+4. Navigate to the Terraform directory and initialize it by running the command `terraform init`
 
-5. Run the command "terraform validate" to validate your terraform code , then "terraform plan" to review the infrastructure changes that
+5. Run the command `terraform validate` to validate your terraform code , then `terraform plan` to review the infrastructure changes that
 terraform will apply.
 
 6. After reviewing the changes, run the command "terraform apply" to apply the changes to your infrastructure
