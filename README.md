@@ -59,15 +59,12 @@ Note: this guide assumes that you have a basic understanding of Docker, Terrafor
 1. To ssh into the vm-instance run this command \
 `ssh -o StrictHostKeyChecking=no -i bootstrap-key.pem ec2-user@<ec2-instance-ip>`
 
-- Note: You Will find that the kubectl already installed using script created by terraform. no need to install kubectl manually
+- Note: You Will find that the kubectl already installed using script created by eksctl. no need to install it manually
+- Note: You Will find that the ingress controller already installed using script created by helm. no need to install it manually
 
-2. To change the default k8s cluster run this command \
-`gcloud container clusters get-credentials my-gke --region <your region> --project <your project name>`
+2. Install Helm Charts for jenkins and application using shell script
 
-3. Copy the content of the k8s-Deployment directory into the vm-instance
-
-- run `kubectl apply -f AppDeployment.yml` & `Kubectl apply -f AppSVC.yml`
-- run `Kubectl get svc` to get the service ip
+- run `./install-charts.sh`
 
 ## Pictures
 
