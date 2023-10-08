@@ -4,7 +4,7 @@ This repository contains a DevOps project that leverages various technologies, i
 ## Table of Contents
 
 1. [Introduction](#introduction)
-2. [Project Design](#Project Design)
+2. [Project Design](#ProjectDesign)
 3. [Tools](#tools)
 4. [Setup and Configuration](#setup-and-configuration)
 5. [Usage](#usage)
