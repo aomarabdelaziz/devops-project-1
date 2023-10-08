@@ -66,6 +66,10 @@ Note: this guide assumes that you have a basic understanding of Docker, Terrafor
 
 2. Install Helm Charts for jenkins and application using shell script run `./install-charts.sh`
 
+3. After installation the helm charts for jenkins and application
+
+- Run this command to get the loadbalancer-ip for application: `kubectl get ingress/<release-name> -o jsonpath='{.status.loadBalancer.ingress[0].hostname}' -n <release-namespace>`
+- Run this command to get the loadbalancer-ip for application: `kubectl get ingress/<release-name> -o jsonpath='{.status.loadBalancer.ingress[0].hostname}' -n default`
 
 ## Pictures
 
