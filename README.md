@@ -4,7 +4,7 @@ This repository contains a DevOps project that leverages various technologies, i
 ## Table of Contents
 
 1. [Introduction](#introduction)
-2. [Project Design](#ProjectDesign)
+2. [Project Design](#project-design)
 3. [Tools](#tools)
 4. [Setup and Configuration](#setup-and-configuration)
 5. [Usage](#usage)
@@ -16,7 +16,7 @@ This repository contains a DevOps project that leverages various technologies, i
 
 This DevOps project aims to automate the provisioning, deployment, and management of applications on an Amazon EKS cluster using Terraform for infrastructure provisioning, Ansible for configuration management, Docker for containerization, eksctl for EKS cluster creation, kubectl for Kubernetes cluster management, Helm for package management, and Jenkins for continuous integration and continuous deployment (CI/CD).
 
-## ProjectDesign
+## Project Design
 
 ![Alternative Image](./assets/design-1.png)
 ![Alternative Image](./assets/design-2.png)
