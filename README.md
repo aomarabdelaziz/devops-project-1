@@ -100,6 +100,10 @@ Note: this guide assumes that you have a basic understanding of Docker, Terrafor
 
 ![Alternative Image](./assets/deploy-rollout.png)
 
+### Deployment Log
+
+![Alternative Image](./assets/deployment-log.png)
+
 ### Access Application Website Before CI/CD Changes
 
 ![Alternative Image](./assets/regapp-1.png)
@@ -107,3 +111,6 @@ Note: this guide assumes that you have a basic understanding of Docker, Terrafor
 ### Access Application Website After CI/CD Changes
 
 ![Alternative Image](./assets/regapp-2.png)
+
+
+
