@@ -2,8 +2,8 @@
 
 ## Project Design
 
-![Alternative Image](./asssets/design-1.png)
-![Alternative Image](./asssets/design-2.png)
+![Alternative Image](./assets/design-1.png)
+![Alternative Image](./assets/design-2.png)
 
 ## Tools
 
