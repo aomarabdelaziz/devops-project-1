@@ -138,9 +138,9 @@ resource "aws_instance" "bootstrap-ec2" {
   }
   provisioner "remote-exec" {
     inline = [
-      "sudo echo helm install jenkins ${var.jenkins-chart-url} --namespace=devops-tools --create-namespace > /home/ec2-user/install-charts.sh",
-      "sudo helm install regapp ${var.regapp-chart-url} >> /home/ec2-user/install-charts.sh",
-      "sudo chmod +x /home/ec2-user/install-charts.sh"
+      "echo helm install jenkins ${var.jenkins-chart-url} --namespace=devops-tools --create-namespace > /home/ec2-user/install-charts.sh",
+      "echo helm install regapp ${var.regapp-chart-url} >> /home/ec2-user/install-charts.sh",
+      "chmod +x /home/ec2-user/install-charts.sh"
     ]
   }
 

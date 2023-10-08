@@ -1,0 +1,5 @@
+Warning: A secret was passed to "sh" using Groovy String interpolation, which is insecure.
+		 Affected argument(s) used the following variable(s): [keyfile]
+		 See https://jenkins.io/redirect/groovy-string-interpolation for details.
++ ssh -o StrictHostKeyChecking=no -i **** ec2-user@54.87.22.203 kubectl set image deployment/regapp regapp-container=abdelazizomar/regapp:14
+deployment.apps/regapp image updated

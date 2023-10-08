@@ -1,7 +1,7 @@
 1. Get the application URL by running these commands:
 {{- if .Values.ingress.enabled }}
     NOTE: It may take a few minutes for the LoadBalancer IP to be available.
-    kubectl get ingress/{{ .Release.Name }}-ingress -o jsonpath='{.status.loadBalancer.ingress[0].ip}' -n {{ .Release.Namespace }}
+    kubectl get ingress/{{ .Release.Name }}-ingress -o jsonpath='{.status.loadBalancer.ingress[0].hostname}' -n {{ .Release.Namespace }}
 {{- else if contains "NodePort" .Values.services.portType }}
   export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ include "jenkins.fullname" . }})
   export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
