@@ -40,7 +40,7 @@ Helm is utilized to package Jenkins and the application, and the Helm charts are
 - Jenkins (CI/CD)
 
 ## Prerequisites
-# Terraform must to be installed
+* Terraform must to be installed
 ### Installation Guide
 
 1. Download or clone the repository to your local machine.
