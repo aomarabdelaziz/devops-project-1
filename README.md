@@ -1,9 +1,9 @@
 # DevOps Project README
 
-This DevOps project aims to automate the provisioning, deployment, and management of applications on an Amazon EKS cluster using Terraform for infrastructure provisioning, Ansible for configuration management, Docker for containerization, eksctl for EKS cluster creation, kubectl for Kubernetes cluster management, Helm for package management, and Jenkins for continuous integration and continuous deployment (CI/CD).
+This repository contains a DevOps project that leverages various technologies, including Terraform, Ansible, Docker, eksctl, EKS cluster, Helm, and kubectl to automate the deployment and management of an application on Amazon EKS.
 ## Table of Contents
 
-1. [Introduction](#introduction)
+1. [Overview](#introduction)
 2. [ProjectDesign](#ProjectDesign)
 3. [Tools](#tools)
 4. [Setup and Configuration](#setup-and-configuration)
@@ -14,7 +14,7 @@ This DevOps project aims to automate the provisioning, deployment, and managemen
 
 ## Introduction
 
-This DevOps project focuses on automating the deployment and management of an application on Amazon EKS (Elastic Kubernetes Service) using Terraform for infrastructure provisioning, Ansible for application deployment and configuration, Docker for containerization, eksctl for EKS cluster management, Helm for package management, and kubectl for Kubernetes cluster management.
+This DevOps project aims to automate the provisioning, deployment, and management of applications on an Amazon EKS cluster using Terraform for infrastructure provisioning, Ansible for configuration management, Docker for containerization, eksctl for EKS cluster creation, kubectl for Kubernetes cluster management, Helm for package management, and Jenkins for continuous integration and continuous deployment (CI/CD).
 
 ## ProjectDesign
 
