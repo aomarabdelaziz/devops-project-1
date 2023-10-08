@@ -16,6 +16,12 @@ Hey Folks 🖐️, This repository contains a DevOps project that leverages vari
 
 This DevOps project aims to automate the provisioning, deployment, and management of applications on an Amazon EKS cluster using Terraform for infrastructure provisioning, Ansible for configuration management, Docker for containerization, eksctl for EKS cluster creation, kubectl for Kubernetes cluster management, Helm for package management, and Jenkins for continuous integration and continuous deployment (CI/CD).
 
+In this project, Terraform is used to provision infrastructure, including 3 EC2 instances:
+
+- **bootstrap-server**: Used to install kubectl and eksctl, and build the EKS cluster.
+- **ansible-server**: Utilized for necessary configuration on the target hosts.
+- **jenkins-agent**: Employed to run Jenkins build jobs.
+
 ## Project Design
 
 ![Alternative Image](./assets/design-1.png)
