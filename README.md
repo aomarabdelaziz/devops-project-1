@@ -62,7 +62,7 @@ Note: this guide assumes that you have a basic understanding of Docker, Terrafor
 - Note: You Will find that the kubectl already installed using script created by eksctl. no need to install it manually
 - Note: You Will find that the ingress controller already installed using script created by helm. no need to install it manually
 
-2. Install Helm Charts for jenkins and application using shell script run ./install-charts.sh
+2. Install Helm Charts for jenkins and application using shell script run `./install-charts.sh`
 
 
 ## Pictures
