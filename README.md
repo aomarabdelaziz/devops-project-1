@@ -6,10 +6,11 @@ Hey Folks 🖐️, This repository contains a DevOps project that leverages vari
 1. [Introduction](#introduction)
 2. [Project Design](#project-design)
 3. [Tools](#tools)
-4. [Setup and Configuration](#setup-and-configuration)
-5. [Usage](#usage)
-6. [Contributing](#contributing)
-7. [License](#license)
+4. [Prerequisites](#prerequisites)
+5. [Installation Guide](#installation-guide)
+6. [Usage](#usage)
+7. [Contributing](#contributing)
+8. [License](#license)
 
 
 ## Introduction
@@ -37,8 +38,9 @@ Helm is utilized to package Jenkins and the application, and the Helm charts are
 - Kubernetes (Containers Orchestration)
 - Helm (Package Manager)
 - Jenkins (CI/CD)
-## How to Use
 
+## Prerequisites
+Terraform must to be installed
 ### Installation Guide
 
 1. Download or clone the repository to your local machine.
