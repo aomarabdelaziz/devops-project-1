@@ -22,6 +22,8 @@ In this project, Terraform is used to provision infrastructure, including 3 EC2 
 - **ansible-server**: Utilized for necessary configuration on the target hosts.
 - **jenkins-agent**: Employed to run Jenkins build jobs.
 
+Helm is utilized to package Jenkins and the application, and the Helm charts are uploaded to an S3 bucket using Terraform.
+
 ## Project Design
 
 ![Alternative Image](./assets/design-1.png)
