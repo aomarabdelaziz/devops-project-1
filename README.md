@@ -45,13 +45,9 @@ Helm is utilized to package Jenkins and the application, and the Helm charts are
 
 1. Download or clone the repository to your local machine.
 
-2. Install gcloud CLI, Terraform, and Docker on your local machine if you haven't already done so.
+2. Install Terraform your local machine if you haven't already done so.
 
-3. Authenticate to your user by running the command "gcloud init" and follow the instructions to log in to your Google Cloud Platform account and select the project you want to use
-
-4. Navigate to the Application directory in the repository and build the app using Docker by running the command \
-`docker build -t <repository host>/<project id>/<image name>:<tag>` \
-Make sure to replace the placeholders with your own values.
+4. Run the command `Terraform apply`
 
 5. Navigate to the k8s-Deployment directory and make the necessary changes to the AppDeployment.yaml file, specifically the image source, to match the image you built in step 4
 
