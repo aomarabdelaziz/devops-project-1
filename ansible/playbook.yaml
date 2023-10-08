@@ -142,7 +142,7 @@
    
    - name: Install Jenkins Helm-Charts
      debug:
-      msg: "Run this command to install: helm install jenkins {{ jenkins_chart_url }} --namespace=devops-tools --create-namespace"
+      msg: "helm install jenkins {{ jenkins_chart_url }} --namespace=devops-tools --create-namespace"
      ignore_errors: yes   
    - name: Install Jenkins Helm-Charts
      debug:

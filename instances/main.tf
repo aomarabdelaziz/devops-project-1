@@ -100,6 +100,8 @@ resource "aws_instance" "ansible-ec2" {
       "echo bootstrap_host ansible_host='${aws_instance.bootstrap-ec2.public_ip}' ansible_user=ec2-user ansible_ssh_private_key_file=/home/ec2-user/${var.bootstrap-key-name}.pem > inventory.txt",
       "echo agent_host ansible_host='${aws_instance.agent-ec2.public_ip}' ansible_user=ubuntu ansible_ssh_private_key_file=/home/ec2-user/${var.agent-key-name}.pem >> inventory.txt",
       "sudo chmod 400 ${var.bootstrap-key-name}.pem ${var.agent-key-name}.pem",
+      "sudo echo helm install jenkins ${var.jenkins-chart-url} --namespace=devops-tools --create-namespace > /home/ec2-user/helm-charts",
+      "sudo helm install regapp ${var.regapp-chart-url} >> /home/ec2-user/helm-charts",
       #"ansible-playbook playbook.yaml",
       "ansible-playbook playbook.yaml -e 'jenkins_chart_url=${var.jenkins-chart-url} regapp_chart_url=${var.regapp-chart-url}'"
     ]
