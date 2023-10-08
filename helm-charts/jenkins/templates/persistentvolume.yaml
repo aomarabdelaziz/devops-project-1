@@ -8,7 +8,7 @@ metadata:
 spec:
   claimRef:
     name: "{{ .Release.Name }}-pvc"
-    namespace: {{ .Values.namespace }}
+    namespace: {{ .Release.Namespace }}
   capacity:
     storage: {{ .Values.volumes.persistentVolume.storageCapacity }}
   accessModes:

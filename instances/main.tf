@@ -130,21 +130,7 @@ resource "aws_instance" "bootstrap-ec2" {
   key_name = var.bootstrap-key-name
 
 
-  /* connection {
-    type        = "ssh"
-    host        = self.public_ip
-    user        = "ec2-user"
-    private_key = var.bootstrap-key-pem
-  }
-  provisioner "file" {
-    source      = "helm-charts/jenkins-0.1.0.tgz"
-    destination = "/home/ec2-user/jenkins-0.1.0.tgz"
-  }
 
-  provisioner "file" {
-    source      = "helm-charts/jenkins-0.1.0.tgz"
-    destination = "/home/ec2-user/regapp-0.1.0.tgz"
-  } */
 
 
   tags = {

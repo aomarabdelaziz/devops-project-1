@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  namespace: {{ .Values.namespace }}
+  namespace: {{ .Release.Namespace }}
   name: "{{ .Release.Name }}-ingress"
   annotations:
   {{- range $key, $value := .Values.ingress.annotations }}

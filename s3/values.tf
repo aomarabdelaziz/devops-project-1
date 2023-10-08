@@ -3,3 +3,4 @@ variable "files_to_upload" {
   type        = list(string)
   #default     = ["jenkins-0.1.0.tgz", "regapp-0.1.0.tgz"]
 }
+
