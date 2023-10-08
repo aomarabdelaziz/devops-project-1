@@ -54,7 +54,7 @@ Helm is utilized to package Jenkins and the application, and the Helm charts are
 5. Run the command `terraform validate` to validate your terraform code , then `terraform plan` to review the infrastructure changes that
 terraform will apply.
 
-6. After reviewing the changes, run the command "terraform apply" to apply the changes to your infrastructure
+6. After reviewing the changes, run the command `terraform apply` to apply the changes to your infrastructure
 
 Note: this guide assumes that you have a basic understanding of Docker, Terraform, and AWS Platform.
   
