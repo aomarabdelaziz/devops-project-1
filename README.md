@@ -1,6 +1,6 @@
 # DevOps Project README
 
-This repository contains a DevOps project that leverages various technologies, including Terraform, Ansible, Docker, eksctl, EKS cluster, Helm, jenkins, and kubectl to automate the deployment and management of an application on Amazon EKS.
+Hey Folks 🖐️, This repository contains a DevOps project that leverages various technologies, including Terraform, Ansible, Docker, eksctl, EKS cluster, Helm, jenkins, and kubectl to automate the deployment and management of an application on Amazon EKS.
 ## Table of Contents
 
 1. [Introduction](#introduction)
