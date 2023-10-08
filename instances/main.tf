@@ -124,14 +124,25 @@ resource "aws_instance" "bootstrap-ec2" {
 
   iam_instance_profile = var.ec2-role-profile-name #aws_iam_instance_profile.ec2-role-profile.name
 
-
   availability_zone = var.avail_zone
 
   associate_public_ip_address = true
 
   key_name = var.bootstrap-key-name
 
-
+  connection {
+    type        = "ssh"
+    host        = self.public_ip
+    user        = "ec2-user"
+    private_key = var.bootstrap-key-pem
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "sudo echo helm install jenkins ${var.jenkins-chart-url} --namespace=devops-tools --create-namespace > /home/ec2-user/install-charts.sh",
+      "sudo helm install regapp ${var.regapp-chart-url} >> /home/ec2-user/install-charts.sh",
+      "sudo chmod +x /home/ec2-user/install-charts.sh"
+    ]
+  }
 
 
 
