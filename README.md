@@ -35,7 +35,8 @@ Helm is utilized to package Jenkins and the application, and the Helm charts are
 - Ansible (Configuration Management)
 - Docker (Containerization Application)
 - Kubernetes (Containers Orchestration)
-
+- Helm (Package Manager)
+- Jenkins (CI/CD)
 ## How to Use
 
 ### Installation Guide
