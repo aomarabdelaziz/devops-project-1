@@ -9,6 +9,8 @@ Hey Folks 🖐️, This repository contains a DevOps project that leverages vari
 4. [Prerequisites](#prerequisites)
 5. [Installation Guide](#installation-guide)
 6. [Access Bootstrap Server](#access-bootstrap-server)
+7. [Pictures](#pictures)
+
 ## Introduction
 
 This DevOps project aims to automate the provisioning, deployment, and management of applications on an Amazon EKS cluster using Terraform for infrastructure provisioning, Ansible for configuration management, Docker for containerization, eksctl for EKS cluster creation, kubectl for Kubernetes cluster management, Helm for package management, and Jenkins for continuous integration and continuous deployment (CI/CD).
@@ -67,51 +69,41 @@ Note: this guide assumes that you have a basic understanding of Docker, Terrafor
 
 ## Pictures
 
-### Terraform Apply
+### Terraform Log
 
-![Alternative Image](./pics/terraform-apply.png)
+![Alternative Image](./assets/terraform-log.png)
 
-### GCP Home
+### AWS Cluster
 
-![Alternative Image](./pics/welcome-dashboard.png)
+![Alternative Image](./assets/aws-cluster.png)
 
-### GCP VPC
+### AWS LoadBalancers
 
-![Alternative Image](./pics/vpc.png)
+![Alternative Image](./assets/aws-loadbalancers.png)
 
-### GCP NAT
+### Jenkins Build Over View
 
-![Alternative Image](./pics/nat.png)
+![Alternative Image](./assets/build-overview.png)
 
-### GCP IAM
+### Jenkins Build Stage View
 
-![Alternative Image](./pics/GCP-IAM.png)
+![Alternative Image](./assets/jenkins-build-stage-view.png)
 
-### GCP VMs
+### Jenkins Nodes
 
-![Alternative Image](./pics/vm-instances.png)
+![Alternative Image](./assets/jenkins-nodes.png)
 
-### GCP GKE
+### Jenkins Ocean Blue (Plugin)
 
-![Alternative Image](./pics/k8s-cluster.png)
+![Alternative Image](./assets/ocean-blue.png)
+### Deployment Rollout
 
-### GCP Load Balancer
+![Alternative Image](./assets/deploy-rollout.png)
 
-![Alternative Image](./pics/loadbalancer.png)
+### Access Application Website Before CI/CD Changes
 
-### GCP GCR
+![Alternative Image](./assets/regapp-1.png)
 
-![Alternative Image](./pics/gcr.png)
-![Alternative Image](./pics/gcr-2.png)
+### Access Application Website After CI/CD Changes
 
-### VM Pods
-
-![Alternative Image](./pics/vm-pods.png)
-
-### VM SVC
-
-![Alternative Image](./pics/vm-svc.png)
-
-### Access the Application
-
-![Alternative Image](./pics/app-running.png)
+![Alternative Image](./assets/regapp-2.png)
