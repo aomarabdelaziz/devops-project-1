@@ -47,20 +47,16 @@ Helm is utilized to package Jenkins and the application, and the Helm charts are
 
 2. Install Terraform your local machine if you haven't already done so.
 
-4. Run the command `Terraform apply`
+3. Make the necessary changes in the provider.tf file, specifically the project name and region, to match your own project settings
 
-5. Navigate to the k8s-Deployment directory and make the necessary changes to the AppDeployment.yaml file, specifically the image source, to match the image you built in step 4
+4. Navigate to the Terraform directory and initialize it by running the command `terraform init``
 
-6. Navigate to the Terraform directory and initialize it by running the command "terraform init"
-
-7. Make the ncessary changes in the provider.tf file, specifically the project name and region, to match your own project settings
-
-8. Run the command "terraform validate" to validate your terraform code , then "terraform plan" to review the infrastructure changes that
+5. Run the command "terraform validate" to validate your terraform code , then "terraform plan" to review the infrastructure changes that
 terraform will apply.
 
-9. After reviewing the changes, run the command "terraform apply" to apply the changes to your infrastructure
+6. After reviewing the changes, run the command "terraform apply" to apply the changes to your infrastructure
 
-Note: this guide assumes that you have a basic understanding of Docker, Terraform, and GCP Platform.
+Note: this guide assumes that you have a basic understanding of Docker, Terraform, and AWS Platform.
   
 ### Access VM
 
