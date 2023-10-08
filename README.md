@@ -8,11 +8,7 @@ Hey Folks 🖐️, This repository contains a DevOps project that leverages vari
 3. [Tools](#tools)
 4. [Prerequisites](#prerequisites)
 5. [Installation Guide](#installation-guide)
-6. [Usage](#usage)
-7. [Contributing](#contributing)
-8. [License](#license)
-
-
+6. [Access Bootstrap Server](#access-bootstrap-server)
 ## Introduction
 
 This DevOps project aims to automate the provisioning, deployment, and management of applications on an Amazon EKS cluster using Terraform for infrastructure provisioning, Ansible for configuration management, Docker for containerization, eksctl for EKS cluster creation, kubectl for Kubernetes cluster management, Helm for package management, and Jenkins for continuous integration and continuous deployment (CI/CD).
@@ -58,10 +54,10 @@ terraform will apply.
 
 Note: this guide assumes that you have a basic understanding of Docker, Terraform, and AWS Platform.
   
-### Access VM
+### Access Bootstrap Server
 
 1. To ssh into the vm-instance run this command \
-`gcloud compute ssh --zone "<your zone>" "my-instance" --tunnel-through-iap --project "<you project name>"`
+`ssh -o StrictHostKeyChecking=no -i bootstrap-key.pem ec2-user@<ec2-instance-ip>`
 
 - Note: You Will find that the kubectl already installed using script created by terraform. no need to install kubectl manually
 
